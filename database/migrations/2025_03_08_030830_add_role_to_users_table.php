@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tentangs', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul');
-            $table->string('deskripsi')->nullable();
-            $table->date('tanggal');
-            $table->string('foto')->default('noimage.png');
-
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role')->default('user'); // Tambahkan kolom 'role' dengan default 'user'
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tentangs');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role'); // Hapus kolom jika migrasi di-rollback
+        });
     }
 };

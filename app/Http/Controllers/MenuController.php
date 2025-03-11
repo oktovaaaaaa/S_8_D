@@ -38,9 +38,9 @@ class MenuController extends Controller
             'foto' => $foto->hashName()
         ]);
 
-        return redirect()->route('menus.tampilan')->with('success', 'Add menu Success');
+        return redirect()->route('menus.tampilan')->with('success', 'Menu berhasil ditambahkan !');
     }
-    
+
     public function edit(menu $menu)
     {
         return view('menus.edit', compact('menu'));

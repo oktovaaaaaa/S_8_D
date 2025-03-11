@@ -12,8 +12,11 @@ class Tentang extends Model
     protected $table ='tentangs';
 
 protected $fillable =[
-    'title',
+    'judul',
     'deskripsi',
     'tanggal'
+    ];
+    protected $casts = [
+        'tanggal' => 'date',
     ];
 }

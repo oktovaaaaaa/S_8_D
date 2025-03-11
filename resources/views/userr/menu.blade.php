@@ -2,9 +2,8 @@
 
 <div class="container">
     @include('layouts.navbar')
-
-    <br><br><br><br><br>
-    <div class="d-flex flex-wrap justify-content-center gap-4 mt-4 mb-4 border-radius 20%">
+<br><br>
+    <div class="d-flex flex-wrap justify-content-center gap-4 mt-4 mb-4 border-radius 20% pt-5 my-5">
         @if(isset($menus) && count($menus) > 0)
             @foreach ($menus as $menu)
             <div class="card col-lg-4 shadow-lg border-0" style="width: 18rem;">
@@ -21,7 +20,7 @@
             </div>
             @endforeach
         @else
-            <p class="text-center fs-4">Menu tidak tersedia</p>
+            <p class="text-center fs-4 ">Menu tidak tersedia</p>
         @endif
     </div>
 {{--

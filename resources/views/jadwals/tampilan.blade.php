@@ -1,6 +1,8 @@
 @extends('layouts.mainadmin')
 @section('contents')
-<br><br><br>
+<div class="d-flex justify-content-center align-items-center vh-15">
+    <img src="{{asset('tentang.png')}}" class="img-fluid" style="width:200px">
+</div>
 <div class="d-flex pt-5">
     <div class="d-flex justify-content-between align-items-center w-100">
         <h2 class="fw-semibold fs-4">Jadwal</h2>
@@ -12,6 +14,7 @@
     <x-alert message="{{ session('success') }}" />
 @endif
 
+@if(isset($jadwals) && count($jadwals) > 0)
 <div class="jadwal-container">
     <h2  class="text-center">Jadwal Harian</h2>
     <br>
@@ -24,7 +27,6 @@
             </tr>
         </thead>
         <tbody>
-            @if(isset($jadwals) && count($jadwals) > 0)
             @foreach ($jadwals as $jadwal)
             <tr style="cursor: pointer;" onclick="window.location='{{ route('jadwals.edit', $jadwal) }}';">  <!-- Tambahkan style dan onclick -->
                 <td class="text-center">{{ $jadwal->hari }}</td>
