@@ -1,11 +1,12 @@
 @extends('layouts.main')
 @include('layouts.navbar')
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <div class="container pt-5 my-5">
-    <h1>Daftar Testimoni</h1>
+    <h1 class="text-center mb-5">Daftar Testimoni</h1>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -13,69 +14,66 @@
         </div>
     @endif
 
-
     @auth
         @if (auth()->user()->role == 'user')
-            <a href="{{ route('userr.testimoni.create') }}" class="btn btn-primary mb-3">Tambah Testimoni</a>
-            @endauth
-        @else
-        <a>Login TerlebiH dahulu jika ingin menambahkan Ulasan</a>
-        <br>
-        <a href="{{ route('login') }}" class="btn btn-primary mb-3">Login</a>
-        @endif
+            <a href="{{ route('testimoni.create') }}" class="btn btn-primary mb-5">
+                <i class="fas fa-plus"></i> Tambah Testimoni
+            </a>
+        @endauth
+    @else
+        <div class="alert alert-info">
+            <p>Login terlebih dahulu jika ingin menambahkan ulasan.</p>
+            <a href="{{ route('login') }}" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+        </div>
+    @endif
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>Rating</th>
-                <th>Deskripsi</th>
-                {{-- <th>Aksi</th> --}}
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($testimonis as $testimoni)
-                <tr>
-                    <td>{{ $testimoni->nama }}</td>
-                    <td>
-                        @for ($i = 1; $i <= 5; $i++)
-                            @if ($i <= $testimoni->rating)
-                                <span class="fa fa-star" style="color: gold;"></span>
-                            @else
-                                <span class="fa fa-star" style="color: black;"></span>
-                            @endif
-                        @endfor
-                    </td>
-                    <td>{{ $testimoni->deskripsi }}</td>
-                    <td>
-                        @auth
-                        @if (auth()->user()->role == 'user')
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                id="dropdownMenuButton{{ $testimoni->id }}" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $testimoni->id }}">
-
-                                <li><a class="dropdown-item"
-                                    href="{{ route('userr.testimoni.edit', $testimoni->id) }}">Edit</a></li>
-                                    <li>
-                                        <form action="{{ route('userr.testimoni.destroy', $testimoni->id) }}" method="POST"
-                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="dropdown-item text-danger">Hapus</button>
-                                            @endauth
-                                            @endif
-                                    </form>
-                                </li>
-                            </ul>
+    <div class="row">
+        @foreach ($testimonis as $testimoni)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ asset('path/to/default/profile.png') }}" alt="Profile" class="rounded-circle me-3" width="50" height="50">
+                            <div>
+                                <h5 class="card-title mb-0">{{ $testimoni->nama }}</h5>
+                                <small class="text-muted">{{ $testimoni->created_at->diffForHumans() }}</small>
+                            </div>
                         </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                        <div class="mb-3">
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $testimoni->rating)
+                                    <span class="fa fa-star" style="color: gold;"></span>
+                                @else
+                                    <span class="fa fa-star" style="color: #ddd;"></span>
+                                @endif
+                            @endfor
+                        </div>
+                        <p class="card-text">{{ $testimoni->deskripsi }}</p>
+                    </div>
+                    @auth
+                        @if (auth()->user()->role == 'user' && auth()->user()->id == $testimoni->user_id)
+                            <div class="card-footer bg-transparent border-top-0">
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ route('testimoni.edit', $testimoni->id) }}" class="btn btn-sm btn-outline-primary me-2">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <form action="{{ route('testimoni.destroy', $testimoni->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endif
+                    @endauth
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>
+
 @include('layouts.footer')

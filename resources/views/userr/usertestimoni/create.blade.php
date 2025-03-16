@@ -29,7 +29,7 @@
             </div>
         @endif
 
-        <form action="{{ route('userr.testimoni.store') }}" method="POST">
+        <form action="{{ route('testimoni.store') }}" method="POST">
             @csrf
 
             <div class="mb-3">
@@ -48,7 +48,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="{{ route('userr.testimoni.index') }}" class="btn btn-secondary">Batal</a>
+            <a href="{{ route('testimoni.index') }}" class="btn btn-secondary">Batal</a>
         </form>
     </div>
     <script>

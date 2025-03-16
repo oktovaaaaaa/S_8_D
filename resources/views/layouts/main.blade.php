@@ -25,8 +25,19 @@
   <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-</head>
-<body>
+
+  <style>
+    #header a {
+        text-decoration: none;
+    }
+
+    #header a:hover {
+        text-decoration: none;
+    }
+
+</style>
+
+
 
 
   <!-- Vendor JS Files -->

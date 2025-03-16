@@ -12,7 +12,7 @@
             <h1>Better Solutions For Your Business</h1>
             <p>We are team of talented designers making websites with Bootstrap</p>
             <div class="d-flex">
-              <a href="#about" class="btn-get-started">Get Started</a>
+              <a href="#about" class="btn-get-started">Pesan Makanan</a>
               <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
             </div>
           </div>
@@ -224,4 +224,4 @@
     </section><!-- /Contact Section -->
 
   </main>
-  @include('layouts.footer')
+  {{-- @include('layouts.footer') --}}

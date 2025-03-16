@@ -868,7 +868,7 @@
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
+                  <label for="name-field" class="pb-2">Your Name</label>    
                   <input type="text" name="name" id="name-field" class="form-control" required="">
                 </div>
 

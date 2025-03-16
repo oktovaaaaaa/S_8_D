@@ -10,7 +10,7 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li class="{{ request()->is('/') ? 'active' : '' }}">
-                    <a href="{{ url('') }}">Home</a>
+                    <a href="{{ url('') }}">Beranda</a>
                 </li>
                 <li class="{{ request()->is('menu') ? 'active' : '' }}">
                     <a href="{{ route('userr.menu') }}">Menu</a>
@@ -25,7 +25,10 @@
                     <a href="{{route('userr.galeri')}}">Galeri</a>
                 </li>
                 <li class="{{ request()->is('galeri') ? 'active' : '' }}">
-                    <a href="{{ route('userr.testimoni.index') }}">Testimoni</a>
+                    <a href="{{ route('testimoni.index') }}">Testimoni</a>
+                </li>
+                <li class="{{ request()->is('kontak') ? 'active' : '' }}">
+                    <a href="{{ route('kontakuserr') }}">Kontak</a>
                 </li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li class="dropdown">
@@ -33,7 +36,7 @@
                         <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
                     </a>
                     <ul>
-                        <li><a href="#">Dropdown 1</a></li>
+                        {{-- <li><a href="#">Dropdown 1</a></li>
                         <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></a>
                             <ul>
@@ -46,7 +49,7 @@
                         </li>
                         <li><a href="#">Dropdown 2</a></li>
                         <li><a href="#">Dropdown 3</a></li>
-                        <li><a href="#">Dropdown 4</a></li>
+                        <li><a href="#">Dropdown 4</a></li> --}}
                     </ul>
                 </li>
                 <li><a href="#contact">Contact</a></li>

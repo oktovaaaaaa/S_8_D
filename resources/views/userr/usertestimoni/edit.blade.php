@@ -31,7 +31,7 @@
             </div>
         @endif
 
-        <form action="{{ route('userr.testimoni.update', $testimoni->id) }}" method="POST">
+        <form action="{{ route('testimoni.update', $testimoni->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -51,7 +51,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{ route('userr.testimoni.index') }}" class="btn btn-secondary">Batal</a>
+            <a href="{{ route('testimoni.index') }}" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 

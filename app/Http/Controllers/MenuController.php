@@ -8,11 +8,23 @@ use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $menus = Menu::paginate(6);
+        $search = $request->input('search');
+        $query = Menu::query();
 
-        return view('menus.tampilan', compact('menus'));
+        if($search)
+        {
+            $query->where('nama','like','%'. $search . '%')->orWhere('deskripsi','like','%' . $search . '%');
+        }
+
+        $menus = $query->paginate(8);
+
+        return view ('menus.tampilan', compact('menus', 'search'));
+
+        // $menus = Menu::paginate(12);
+
+        // return view('menus.tampilan', compact('menus'));
     }
 
     public function create()

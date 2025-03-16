@@ -13,12 +13,29 @@
     </div>
     <br><br><br>
 
+    <!-- Form Pencarian -->
+<div class="mt-4">
+    <form action="{{-- {{ route('menus.index') }} --}}" method="GET" class="d-flex">
+        <input type="text" name="search" class="form-control me-2" placeholder="Cari menu..." value="{{-- {{ request('search') }} --}}">
+        <button type="submit" class="btn btn-outline-primary">Cari</button>
+    </form>
+</div>
+<br><br><br>
+
     @if (session()->has('success'))
         <x-alert message="{{ session('success') }}" />
     @endif
 
+    <!-- Pesan Jika Hasil Pencarian Kosong -->
+@if (isset($menus) && $menus->isEmpty())
+<div class="alert alert-info mt-4">
+    Tidak ada menu yang ditemukan    "{{ request('search') }}".
+</div>
+@endif
+
+
     <div class="container mt-4">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6 g-4">
             @foreach ($galeris as $galeri)
                 <div class="col">
                     <div class="card h-100 shadow-sm rounded-4 overflow-hidden">

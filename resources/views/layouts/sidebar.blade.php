@@ -1,3 +1,5 @@
+
+
 <div class="wrapper">
     <aside id="sidebar">
         <div class="d-flex">
@@ -34,7 +36,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="{{-- {{route('testimonis.tampilan')}} --}}" class="sidebar-link">
+                <a href="{{route('testimonis.index')}}" class="sidebar-link">
                     <i class="bi bi-chat-quote"></i> <!-- Ikon Testimoni -->
                     <span>Testimoni</span>
                 </a>
@@ -46,6 +48,12 @@
                 <i class="bi bi-shield-lock"></i> <!-- Ikon auth -->
                 <span>Auth</span>
             </a>
+            <li class="sidebar-item">
+                <a href="{{route('kontaks.tampilan')}}" class="sidebar-link">
+                    <i class="bi bi-bell"></i>
+                    <span>Notifikasi Pesan</span>
+                </a>
+            </li>
             <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">Login</a>
@@ -56,14 +64,8 @@
                 </ul>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-bell"></i> <!-- Ikon notifikasi -->
-                    <span>Notification</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
                 <a href="{{route('home')}}" class="sidebar-link">
-                    <i class="bi bi-house"></i> <!-- Ikon Home -->
+                    <i class="bi bi-house"></i>
                     <span>Home User</span>
                 </a>
             </li>

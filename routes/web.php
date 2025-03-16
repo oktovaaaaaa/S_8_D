@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminKontakController;
+use App\Http\Controllers\AdminTestimoniController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +14,7 @@ use App\Http\Controllers\UserTentangController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\UserGaleriController;
 use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\KontakController;
 
 
 
@@ -26,22 +29,6 @@ use App\Http\Controllers\TestimoniController;
 |
 */
 
-    /* TESTIMONI*/
-
-        Route::prefix('userr')->group(function () {
-            Route::get('/testimoni', [TestimoniController::class, 'index'])->name('userr.testimoni.index');
-
-            // Rute untuk CRUD testimoni (sekarang dalam satu controller)
-            Route::prefix('testimoni')->group(function () {
-                Route::get('/create', [TestimoniController::class, 'create'])->name('userr.testimoni.create');
-                Route::post('/store', [TestimoniController::class, 'store'])->name('userr.testimoni.store');
-                Route::get('/{testimoni}/edit', [TestimoniController::class, 'edit'])->name('userr.testimoni.edit');
-                Route::put('/{testimoni}', [TestimoniController::class, 'update'])->name('userr.testimoni.update');
-                Route::delete('/{testimoni}', [TestimoniController::class, 'destroy'])->name('userr.testimoni.destroy');
-            });
-        });
-
-
 
 
 
@@ -50,17 +37,34 @@ Route::get('/dashboard', [MenuController::class, 'index'])->middleware(['auth', 
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('userr.home');
 })->name('home');
+
 Route::get('/userr/menu', [UserMenuController::class, 'index'])->name('userr.menu');
 Route::get('userr/jadwal', [UserJadwalController::class, 'index'])->name('userr.jadwal');
 Route::get('userr/tentang', [UserTentangController::class, 'index'])->name('userr.tentang');
 Route::get('userr/galeri', [UserGaleriController::class, 'index'])->name('userr.galeri');
 
 
+// Route::get('userr/kontak', [KontakController::class, 'index'])->name('userr.kontak');
+Route::get('/kontak', [KontakController::class, 'create'])->name('kontakuser');
+Route::post('/kontak', [KontakController::class, 'store'])->name('kontakuserr');
+
+
+
 Route::get('/userr.jadwal', function () {
     return view('userr.jadwal');
 });
+
+    // /* TESTIMONI*/
+    // Route::resource('testimoni', TestimoniController::class);
+    // Route::get('/testimoni', [TestimoniController::class, 'index'])->name('testimoni.index');
+    // Route::get('/testimoni/create', [TestimoniController::class, 'create'])->name('testimoni.create');
+    // Route::post('/testimoni/store', [TestimoniController::class, 'store'])->name('testimoni.store');
+    // Route::get('/testimoni/{testimoni}/edit', [TestimoniController::class, 'edit'])->name('testimoni.edit');
+    // Route::put('/testimoni/{testimoni}', [TestimoniController::class, 'update'])->name('testimoni.update');
+    // Route::delete('/testimoni/{testimoni}', [TestimoniController::class, 'destroy'])->name('testimoni.destroy');
+    Route::resource('testimoni', TestimoniController::class);
 
 
 Route::middleware( 'admin')->group(function () {
@@ -70,7 +74,7 @@ Route::middleware( 'admin')->group(function () {
 
 
     //UNTUK Admin menu
-Route::get('menus', [MenuController::class, 'index'])->name('menus.tampilan');
+    Route::get('menus', [MenuController::class, 'index'])->name('menus.tampilan');
 Route::get('menus/create', [MenuController::class, 'create'])->name('menus.create');
 Route::post('menus', [MenuController::class, 'store'])->name('menus.store');
 Route::get('menus/{menu}/edit', [MenuController::class, 'edit'])->name('menus.edit');
@@ -103,8 +107,14 @@ Route::get('galeris/{galeri}/edit', [GaleriController::class, 'edit'])->name('ga
 Route::put('galeris/{galeri}', [GaleriController::class, 'update'])->name('galeris.update');
 Route::delete('galeri/{galeri}', [GaleriController::class, 'destroy'])->name('galeris.destroy');
 
+// Testimoni
+// Route::get('testimonis', [AdminTestimoniController::class, 'index'])->name('testimonis.tampilan');
+// Route::delete('/testimoni/{testimoni}', [AdminTestimoniController::class, 'destroy'])->name('testimonis.delete');
+Route::resource('testimonis', AdminTestimoniController::class);
 
-
+// Notifiaksi Pesan
+Route::get('kontaks',[AdminKontakController::class, 'index'])->name('kontaks.tampilan');
+Route::delete('kontaks/{kontak}', [AdminKontakController::class, 'destroy'])->name('kontaks.destroy');
 
 
 
