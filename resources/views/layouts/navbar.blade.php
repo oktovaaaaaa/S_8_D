@@ -27,16 +27,18 @@
                 <li class="{{ request()->is('galeri') ? 'active' : '' }}">
                     <a href="{{ route('testimoni.index') }}">Testimoni</a>
                 </li>
+                <li class="{{ request()->is('pengumuman') ? 'active' : '' }}">
+                    <a href="{{ route('userr.pengumuman') }}">Pengumuman</a>
+                </li>
                 <li class="{{ request()->is('kontak') ? 'active' : '' }}">
                     <a href="{{ route('kontakuserr') }}">Kontak</a>
                 </li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a href="#" class="{{ request()->is('dropdown*') ? 'active' : '' }}">
                         <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
                     </a>
                     <ul>
-                        {{-- <li><a href="#">Dropdown 1</a></li>
+                        <li><a href="#">Dropdown 1</a></li>
                         <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></a>
                             <ul>
@@ -49,10 +51,9 @@
                         </li>
                         <li><a href="#">Dropdown 2</a></li>
                         <li><a href="#">Dropdown 3</a></li>
-                        <li><a href="#">Dropdown 4</a></li> --}}
-                    </ul>
+                        <li><a href="#">Dropdown 4</a></li>
+                 --}}    </ul>
                 </li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

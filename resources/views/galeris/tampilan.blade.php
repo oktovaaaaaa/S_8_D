@@ -22,9 +22,13 @@
 </div>
 <br><br><br>
 
-    @if (session()->has('success'))
-        <x-alert message="{{ session('success') }}" />
-    @endif
+@if (session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"
+        aria-label="Close"></button>
+</div>
+@endif
 
     <!-- Pesan Jika Hasil Pencarian Kosong -->
 @if (isset($menus) && $menus->isEmpty())

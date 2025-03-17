@@ -4,10 +4,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+    }
+    .mtitle {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+    }
+    </style>
 
-<div class="container pt-5 my-5">
-    <h1 class="text-center mb-5">Daftar Testimoni</h1>
-
+        <div class="container pt-5 my-5">
+            <h2 class="mtitle">Testimoni</h2>
+<br>
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -16,12 +28,12 @@
 
     @auth
         @if (auth()->user()->role == 'user')
-            <a href="{{ route('testimoni.create') }}" class="btn btn-primary mb-5">
+            <a href="{{ route('testimoni.create') }}" class="btn btn-primary mb-5 ">
                 <i class="fas fa-plus"></i> Tambah Testimoni
             </a>
         @endauth
     @else
-        <div class="alert alert-info">
+        <div class="alert alert-info ">
             <p>Login terlebih dahulu jika ingin menambahkan ulasan.</p>
             <a href="{{ route('login') }}" class="btn btn-primary">
                 <i class="fas fa-sign-in-alt"></i> Login

@@ -13,14 +13,13 @@ class MenuController extends Controller
         $search = $request->input('search');
         $query = Menu::query();
 
-        if($search)
-        {
-            $query->where('nama','like','%'. $search . '%')->orWhere('deskripsi','like','%' . $search . '%');
+        if ($search) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('deskripsi', 'like', '%' . $search . '%');
         }
 
         $menus = $query->paginate(8);
 
-        return view ('menus.tampilan', compact('menus', 'search'));
+        return view('menus.tampilan', compact('menus', 'search'));
 
         // $menus = Menu::paginate(12);
 
@@ -41,7 +40,7 @@ class MenuController extends Controller
         ]);
 
         $foto = $request->file('foto');
-        $foto->storeAs('public', $foto->hashName());
+        $foto->storeAs('public/images', $foto->hashName());
 
         menu::create([
             'nama' => $request->nama,
@@ -73,27 +72,36 @@ class MenuController extends Controller
 
         if ($request->file('foto')) {
 
-            if ($menu->foto !== "noimage.png") {
-                Storage::disk('local')->delete('public/' . $menu->foto);
+            if ($request->hasFile('foto')) {
+                // hapus ftlama jika
+                if ($menu->foto !== "noimage.png" && Storage::disk('public')->exists('images/' . $menu->foto)) {
+                    Storage::disk('public')->delete('images/' . $menu->foto);
+                }
+
+
+                $foto = $request->file('foto');
+                $foto->storeAs('public/images', $foto->hashName());
+                $menu->foto = $foto->hashName();
             }
-            $foto = $request->file('foto');
-            $foto->storeAs('public', $foto->hashName());
-            $menu->foto = $foto->hashName();
         }
 
         $menu->update();
 
-        return redirect()->route('menus.tampilan')->with('success', 'Update menu Success');
+        return redirect()->route('menus.tampilan')->with('success', 'Menu berhasil diubah !');
     }
 
     public function destroy(menu $menu)
     {
-        if ($menu->foto !== "noimage.png") {
-            Storage::disk('local')->delete('public/' . $menu->foto);
+        // if ($menu->foto !== "noimage.png") {
+        //     Storage::disk('local')->delete('public/' . $menu->foto);
+        // }
+        if ($menu->foto !== "noimage.png" && Storage::disk('public')->exists('images/' . $menu->foto)) {
+            Storage::disk('public')->delete('images/' . $menu->foto);
         }
+
 
         $menu->delete();
 
-        return redirect()->route('menus.tampilan')->with('success', 'Delete menu Success');
+        return redirect()->route('menus.tampilan')->with('success', 'Menu berhasil dihapus !');
     }
 }

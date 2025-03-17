@@ -31,7 +31,7 @@ class TentangController extends Controller
             'deskripsi' => $request->deskripsi,
             'tanggal' => $request->tanggal
         ]);
-        return redirect()->route('tentangs.tampilan')->with('success', 'Menambahkan tentang cafe berhasil!' );
+        return redirect()->route('tentangs.tampilan')->with('success', 'Tentang cafe berhasil ditambahkan !' );
     }
 
     public function edit(tentang $tentang)
@@ -52,12 +52,12 @@ class TentangController extends Controller
     $tentang->tanggal = $request->tanggal;
 
     $tentang->update();
-return redirect()->route('tentangs.tampilan')->with('succes','Edit tentang cafe berhasil !');
+return redirect()->route('tentangs.tampilan')->with('succes','Tentang cafe berhasil diubah !');
     }
     public function destroy(tentang $tentang)
     {
         $tentang->delete();
 
-        return redirect()->route('tentangs.tampilan')->with('succes','Tentang cafe berhasil dihapus');
+        return redirect()->route('tentangs.tampilan')->with('succes','Tentang cafe berhasil dihapus !');
     }
 }

@@ -8,15 +8,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteLabel">Apakah Anda yakin ingin menghapus kontak?</h5>
+                <h5 class="modal-title" id="confirmDeleteLabel">Apakah Anda yakin ingin menghapus pengumuman?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Setelah kontak dihapus, semua sumber daya dan datanya akan dihapus secara permanen.
+                Setelah pengumuman dihapus, semua sumber daya dan datanya akan dihapus secara permanen.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <form method="post" action="{{ route('kontaks.destroy', $kontak) }}">
+                <form method="post" action="{{ route('pengumumans.destroy', $pengumuman) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Hapus pesan</button>

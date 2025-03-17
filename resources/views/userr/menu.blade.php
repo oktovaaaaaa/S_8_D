@@ -1,8 +1,20 @@
 @extends('layouts.main')
-
-<div class="container">
-    @include('layouts.navbar')
-<br><br>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+    }
+    .mtitle {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+    }
+</style>
+@include('layouts.navbar')
+<div class="container pt-5 my-5">
+<h2 class="mtitle">Daftar Menu</h2>
     <div class="d-flex flex-wrap justify-content-center gap-4 mt-4 mb-4 border-radius 20% pt-5 my-5">
         @if(isset($menus) && count($menus) > 0)
             @foreach ($menus as $menu)

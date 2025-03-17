@@ -126,10 +126,10 @@
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-xl-9 text-center text-xl-start">
             <h3>Galeri</h3>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Tempat di mana setiap tegukan kopi membawa cerita dan setiap hidangan menyajikan kehangatan. Nikmati suasana yang nyaman, aroma kopi yang menggoda, dan cita rasa yang tak terlupakan. Temukan inspirasi dalam setiap sudut, karena di sini, café bukan sekadar tempat—melainkan pengalaman.</p>
           </div>
           <div class="col-xl-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Galeri DelCafe</a>
+            <a class="cta-btn align-middle" href="{{route('userr.galeri')}}">Galeri DelCafe</a>
           </div>
         </div>
 
@@ -137,7 +137,7 @@
 
     </section><!-- /Call To Action Section -->
 
-   
+
 
   </main>
   @include('layouts.footer')

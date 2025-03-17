@@ -34,7 +34,7 @@ class TestimoniController extends Controller
             'deskripsi' => $request->deskripsi,
         ]);
 
-        return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan.');
+        return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan !');
     }
 
     public function edit(Testimoni $testimoni)
@@ -55,13 +55,13 @@ class TestimoniController extends Controller
             'deskripsi' => $request->deskripsi,
         ]);
 
-        return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil diperbarui.');
+        return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil diubah !');
     }
 
     public function destroy(Testimoni $testimoni)
     {
 
         $testimoni->delete();
-        return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil dihapus.');
+        return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil dihapus !');
     }
 }

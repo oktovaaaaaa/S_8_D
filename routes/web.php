@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminKontakController;
 use App\Http\Controllers\AdminTestimoniController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\ProfileController;
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserMenuController;
 use App\Http\Controllers\MenuController;
@@ -15,6 +17,8 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\UserGaleriController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\UserPengumumanController;
+
 
 
 
@@ -44,11 +48,10 @@ Route::get('/userr/menu', [UserMenuController::class, 'index'])->name('userr.men
 Route::get('userr/jadwal', [UserJadwalController::class, 'index'])->name('userr.jadwal');
 Route::get('userr/tentang', [UserTentangController::class, 'index'])->name('userr.tentang');
 Route::get('userr/galeri', [UserGaleriController::class, 'index'])->name('userr.galeri');
-
-
 // Route::get('userr/kontak', [KontakController::class, 'index'])->name('userr.kontak');
 Route::get('/kontak', [KontakController::class, 'create'])->name('kontakuser');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontakuserr');
+Route::get('/userr/pengumuman', [UserPengumumanController::class, 'index'])->name('userr.pengumuman');
 
 
 
@@ -107,14 +110,22 @@ Route::get('galeris/{galeri}/edit', [GaleriController::class, 'edit'])->name('ga
 Route::put('galeris/{galeri}', [GaleriController::class, 'update'])->name('galeris.update');
 Route::delete('galeri/{galeri}', [GaleriController::class, 'destroy'])->name('galeris.destroy');
 
-// Testimoni
+// UNTUK ADMIN Testimoni
 // Route::get('testimonis', [AdminTestimoniController::class, 'index'])->name('testimonis.tampilan');
 // Route::delete('/testimoni/{testimoni}', [AdminTestimoniController::class, 'destroy'])->name('testimonis.delete');
 Route::resource('testimonis', AdminTestimoniController::class);
 
-// Notifiaksi Pesan
+//UNTUK ADMIN Notifiaksi Pesan
 Route::get('kontaks',[AdminKontakController::class, 'index'])->name('kontaks.tampilan');
 Route::delete('kontaks/{kontak}', [AdminKontakController::class, 'destroy'])->name('kontaks.destroy');
+
+//UNTUK ADMIN Pengumuman
+Route::get('pengumuman', [PengumumanController::class,'index'])->name('pengumumans.tampilan');
+Route::get('pengumumans/create', [PengumumanController::class, 'create'])->name('pengumumans.create');
+Route::post('pengumumans', [PengumumanController::class, 'store'])->name('pengumumans.store');
+Route::get('pengumumans/{pengumuman}/edit', [PengumumanController::class, 'edit'])->name('pengumumans.edit');
+Route::put('pengumumans/{pengumuman}', [PengumumanController::class, 'update'])->name('pengumumans.update');
+Route::delete('pengumuman/{pengumuman}', [PengumumanController::class, 'destroy'])->name('pengumumans.destroy');
 
 
 

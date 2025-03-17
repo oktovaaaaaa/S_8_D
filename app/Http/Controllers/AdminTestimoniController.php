@@ -19,6 +19,6 @@ class AdminTestimoniController extends Controller
     {
 
         $testimoni->delete();
-        return redirect()->route('testimonis.index')->with('success', 'Testimoni berhasil dihapus.');
+        return redirect()->route('testimonis.index')->with('success', 'Testimoni berhasil dihapus !');
     }
 }

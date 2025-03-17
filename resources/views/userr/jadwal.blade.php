@@ -1,11 +1,22 @@
 @extends('layouts.main')
-<div class="container">
-    @include('layouts.navbar')
-    <div class="jadwal-container pt-5 my-5">
-        <br>
+@include('layouts.navbar')
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+    }
+    .mtitle {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+    }
+    </style>
+    <div class="container pt-5 my-5">
+        <h2 class="mtitle">Jadwal</h2>
+
     @if(isset($jadwals) && count($jadwals) > 0)
-        <h2  class="text-center">Jadwal Harian</h2>
-        <br>
+            <br>
         <table class="table table-bordered table-hover">
             <thead class="table-success">
                 <tr>
@@ -25,7 +36,7 @@
             </tbody>
         </table>
     @else
-        <p class="text-center fs-4">Jadwal tidak tersedia</p>
+        <p class="text-center fs-4 pt-5">Jadwal tidak tersedia</p>
     @endif
     </div>
 

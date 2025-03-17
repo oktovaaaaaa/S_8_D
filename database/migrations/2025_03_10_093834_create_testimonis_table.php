@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('testimonis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // Foreign key ke tabel users
-            $table->string('nama'); // Nama user (diambil dari tabel users)
+            $table->unsignedBigInteger('user_id');
+            $table->string('nama'); 
             $table->integer('rating');
             $table->text('deskripsi');
             $table->timestamps();

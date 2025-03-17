@@ -37,6 +37,6 @@ class KontakController extends Controller
 
         // return response()->json(['success' => 'Pesan anda sudah terkirimkan']);
 
-        return back()->with('success', 'Pesan anda sudah terkirimkan');
+        return back()->with('success', 'Pesan anda berhasil dikirim !');
     }
 }

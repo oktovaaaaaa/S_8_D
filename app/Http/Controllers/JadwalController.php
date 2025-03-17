@@ -33,7 +33,7 @@ class JadwalController extends Controller
         'waktu_mulai' => $request->waktu_mulai,
         'waktu_selesai' => $request->waktu_selesai
         ]);
-        return redirect()->route('jadwals.tampilan')->with('success', 'Jadwal berhasil ditambahkan');
+        return redirect()->route('jadwals.tampilan')->with('success', 'Jadwal berhasil ditambahkan !');
     }
 
     public function edit(jadwal $jadwal)
@@ -52,14 +52,14 @@ class JadwalController extends Controller
 
 
     $jadwal->update($request->all());
-    return redirect()->route('jadwals.tampilan')->with('success','Update jadwal berhasil!');
+    return redirect()->route('jadwals.tampilan')->with('success','Jadwal berhasil diubah !');
     }
 
     public function destroy(jadwal $jadwal)
     {
     $jadwal->delete();
 
-    return redirect()->route('jadwals.tampilan')->with('success','Hapus jadwal berhasil!');
+    return redirect()->route('jadwals.tampilan')->with('success','Jadwal berhasil dihapus !');
     }
 
 }

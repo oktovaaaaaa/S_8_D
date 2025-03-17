@@ -1,7 +1,22 @@
 @include('layouts.navbar')
 @extends('layouts.main')
-<div id="carouselExample" class="carousel slide pt-5 my-5" data-bs-ride="carousel">
-    <div class="carousel-inner pt-5 my-5">
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+.mtitle {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+</style>
+
+    <div class="container pt-5 my-5">
+        <h2 class="mtitle">Galeri DEL Cafe</h2>
+<div id="carouselExample" class="carousel slide " data-bs-ride="carousel">
+    <div class="carousel-inner pt-5">
         @if(isset($galeris) && count($galeris) > 0)
             @php
             $galerisPerSlide = 3; // Jumlah galeri per slide

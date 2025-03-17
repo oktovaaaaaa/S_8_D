@@ -68,7 +68,7 @@ class GaleriController extends Controller
 
         $galeri->save();
 
-        return redirect()->route('galeris.tampilan')->with('success', 'Edit galeri berhasil!');
+        return redirect()->route('galeris.tampilan')->with('success', 'Galeri berhasil diubah !');
 
     }
 
@@ -80,7 +80,7 @@ class GaleriController extends Controller
 
 
         $galeri->delete();
-return redirect()->route('galeris.tampilan')->with('success', 'Galeri berhasil dihapus!');
+return redirect()->route('galeris.tampilan')->with('success', 'Galeri berhasil dihapus !');
     }
 
 
