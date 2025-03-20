@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminTestimoniController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Pesanan;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserMenuController;
@@ -18,6 +19,8 @@ use App\Http\Controllers\UserGaleriController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\UserPengumumanController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RiwayatadminController;
 
 
 
@@ -44,7 +47,23 @@ Route::get('/', function () {
     return view('userr.home');
 })->name('home');
 
+Route::get('/menu', [UserController::class, 'daftarMenu'])->name('userr.menu');
 Route::get('/userr/menu', [UserMenuController::class, 'index'])->name('userr.menu');
+
+
+Route::middleware(['auth', 'user.role'])->group(function () {
+    Route::get('/menu/{id}/detail', [UserController::class, 'tampilDetailMenu'])->name('userr.detailMenu');
+    Route::post('/keranjang/{menuId}/tambah', [UserController::class, 'tambahKeKeranjang'])->name('userr.tambahKeranjang');
+    Route::get('/keranjang', [UserController::class, 'lihatKeranjang'])->name('userr.keranjang');
+    Route::delete('/keranjang/{id}/hapus', [UserController::class, 'hapusDariKeranjang'])->name('userr.hapusKeranjang');
+    Route::post('/keranjang/proses-pembayaran', [UserController::class, 'prosesPembayaranKeranjang'])->name('userr.prosesPembayaranKeranjang');
+    Route::post('/menu/proses-pembayaran', [UserController::class, 'prosesPembayaran'])->name('userr.prosesPembayaran'); // Route untuk card menu
+    Route::get('/riwayat-pesanan', [UserController::class, 'lihatRiwayatPesanan'])->name('userr.riwayatPesanan');
+    Route::delete('/riwayat-pesanan/{id}/hapus', [UserController::class, 'hapusRiwayatPesanan'])->name('userr.hapusRiwayatPesanan');
+});
+
+
+
 Route::get('userr/jadwal', [UserJadwalController::class, 'index'])->name('userr.jadwal');
 Route::get('userr/tentang', [UserTentangController::class, 'index'])->name('userr.tentang');
 Route::get('userr/galeri', [UserGaleriController::class, 'index'])->name('userr.galeri');
@@ -52,14 +71,11 @@ Route::get('userr/galeri', [UserGaleriController::class, 'index'])->name('userr.
 Route::get('/kontak', [KontakController::class, 'create'])->name('kontakuser');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontakuserr');
 Route::get('/userr/pengumuman', [UserPengumumanController::class, 'index'])->name('userr.pengumuman');
-
-
-
 Route::get('/userr.jadwal', function () {
     return view('userr.jadwal');
 });
 
-    // /* TESTIMONI*/
+// /* TESTIMONI*/
     // Route::resource('testimoni', TestimoniController::class);
     // Route::get('/testimoni', [TestimoniController::class, 'index'])->name('testimoni.index');
     // Route::get('/testimoni/create', [TestimoniController::class, 'create'])->name('testimoni.create');
@@ -68,6 +84,8 @@ Route::get('/userr.jadwal', function () {
     // Route::put('/testimoni/{testimoni}', [TestimoniController::class, 'update'])->name('testimoni.update');
     // Route::delete('/testimoni/{testimoni}', [TestimoniController::class, 'destroy'])->name('testimoni.destroy');
     Route::resource('testimoni', TestimoniController::class);
+
+
 
 
 Route::middleware( 'admin')->group(function () {
@@ -128,6 +146,9 @@ Route::put('pengumumans/{pengumuman}', [PengumumanController::class, 'update'])-
 Route::delete('pengumuman/{pengumuman}', [PengumumanController::class, 'destroy'])->name('pengumumans.destroy');
 
 
+// Pesanan
+
+Route::get('/admin/riwayat-pesanan', [RiwayatadminController::class, 'index'])->name('riwayat.tampilan');
 
     Route::post('/logout',[AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')

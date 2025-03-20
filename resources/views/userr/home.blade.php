@@ -126,7 +126,7 @@
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-xl-9 text-center text-xl-start">
             <h3>Galeri</h3>
-            <p>Tempat di mana setiap tegukan kopi membawa cerita dan setiap hidangan menyajikan kehangatan. Nikmati suasana yang nyaman, aroma kopi yang menggoda, dan cita rasa yang tak terlupakan. Temukan inspirasi dalam setiap sudut, karena di sini, café bukan sekadar tempat—melainkan pengalaman.</p>
+            <p>Tempat di mana setiap tegukan kopi membawa cerita dan setiap hidangan menyajikan kehangatan. Nikmati suasana yang nyaman, aroma kopi yang menggoda, dan cita rasa yang tak terlupakan. Temukan inspirasi dalam setiap sudut, karena di sini, cafe bukan sekadar tempat—melainkan pengalaman.</p>
           </div>
           <div class="col-xl-3 cta-btn-container text-center">
             <a class="cta-btn align-middle" href="{{route('userr.galeri')}}">Galeri DelCafe</a>

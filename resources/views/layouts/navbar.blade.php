@@ -30,6 +30,16 @@
                 <li class="{{ request()->is('pengumuman') ? 'active' : '' }}">
                     <a href="{{ route('userr.pengumuman') }}">Pengumuman</a>
                 </li>
+                @auth
+                @if (auth()->user()->role == 'user' && auth()->user()->id)
+                <li class="{{ request()->is('keranjang') ? 'active' : '' }}">
+                    <a href="{{ route('userr.keranjang') }}">Keranjang</a>
+                </li>
+                <li class="{{ request()->is('riwayat') ? 'active' : '' }}">
+                    <a href="{{ route('userr.riwayatPesanan') }}">Riwayat</a>
+                </li>
+                @endif
+                @endauth
                 <li class="{{ request()->is('kontak') ? 'active' : '' }}">
                     <a href="{{ route('kontakuserr') }}">Kontak</a>
                 </li>

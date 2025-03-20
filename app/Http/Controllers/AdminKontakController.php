@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 
 class AdminKontakController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kontaks = Kontak::all();
+            $search = $request->input('search');
+            $query = Kontak::query();
+
+            if ($search) {
+                $query->where('nama', 'like', '%' . $search . '%')->orWhere('pesan', 'like', '%' . $search . '%');
+            }
+
+        $kontaks = $query->paginate(8);
         return view('kontaks.tampilan', compact('kontaks'));
     }
 

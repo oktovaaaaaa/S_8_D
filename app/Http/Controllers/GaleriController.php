@@ -8,9 +8,16 @@ use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
 {
-    public function index()
+     public function index(Request $request)
     {
-        $galeris = Galeri::paginate(6);
+        $search = $request->input('search');
+        $query = Galeri::query();
+
+        if ($search) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('deskripsi', 'like', '%' . $search . '%');
+        }
+
+        $galeris = $query->paginate(6); // Pagination setelah pencarian
         return view('galeris.tampilan', compact('galeris'));
     }
 

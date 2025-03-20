@@ -13,29 +13,37 @@
     </div>
     <br><br><br>
 
-    <!-- Form Pencarian -->
-<div class="mt-4">
-    <form action="{{-- {{ route('menus.index') }} --}}" method="GET" class="d-flex">
-        <input type="text" name="search" class="form-control me-2" placeholder="Cari menu..." value="{{-- {{ request('search') }} --}}">
-        <button type="submit" class="btn btn-outline-primary">Cari</button>
-    </form>
-</div>
-<br><br><br>
+    {{-- Form Pencarian --}}
+    <div class="mt-4">
+        <form action="{{-- {{ route('galeris.index') }} --}}" method="GET" class="d-flex">
+            <input type="text" name="search" class="form-control me-2" placeholder="Cari galeri..."
+                value="{{ request('search') }}">
+            <button type="submit" class="btn btn-outline-primary">Cari</button>
+        </form>
+    </div>
+    <br><br><br>
 
-@if (session('success'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ session('success') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert"
-        aria-label="Close"></button>
-</div>
-@endif
+    <!-- Tampilkan data galeri di sini -->
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if (isset($galeris) && $galeris->isEmpty())
+        <div class="alert alert-info mt-4">
+            Tidak ada galeri yang ditemukan "{{ request('search') }}".
+        </div>
+    @endif
 
     <!-- Pesan Jika Hasil Pencarian Kosong -->
-@if (isset($menus) && $menus->isEmpty())
-<div class="alert alert-info mt-4">
-    Tidak ada menu yang ditemukan    "{{ request('search') }}".
-</div>
-@endif
+    @if (isset($menus) && $menus->isEmpty())
+        <div class="alert alert-info mt-4">
+            Tidak ada menu yang ditemukan "{{ request('search') }}".
+        </div>
+    @endif
 
 
     <div class="container mt-4">

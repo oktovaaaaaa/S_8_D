@@ -16,7 +16,7 @@
         <div class="container pt-5 my-5">
             <h2 class="mtitle">Pengumuman</h2>
 
-            @if(isset($jadwals) && count($jadwals) > 0)
+            @if(isset($pengumumans) && count($pengumumans) > 0)
     <div class="container pt-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">

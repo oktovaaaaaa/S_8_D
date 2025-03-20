@@ -8,11 +8,22 @@ use App\Models\Testimoni;
 
 class AdminTestimoniController extends Controller
 {
-    public function index()
+    public function index(Request $request) // Menerima objek Request
     {
-        $testimonis = Testimoni::all();
-        return view('testimonis.tampilan', compact('testimonis'));
+        $search = $request->input('search'); // Ambil nilai 'search' dari query string
 
+        $query = Testimoni::query(); // Mulai query builder
+
+        if ($search) {
+            $query->where('nama', 'LIKE', '%' . $search . '%') // Cari di kolom 'nama'
+                  ->orWhere('deskripsi', 'LIKE', '%' . $search . '%'); // Cari juga di kolom 'deskripsi'
+        }
+
+        $testimonis = $query->get(); // Eksekusi query dan ambil hasilnya
+        // atau jika ingin pagination
+        // $testimonis = $query->paginate(10);
+
+        return view('testimonis.tampilan', compact('testimonis', 'search')); // Kirim $testimonis dan $search ke view
     }
 
     public function destroy(Testimoni $testimoni)

@@ -20,11 +20,15 @@
         <div class="container pt-5 my-5">
             <h2 class="mtitle">Testimoni</h2>
 <br>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+
+
+@if (session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endif
 
     @auth
         @if (auth()->user()->role == 'user')

@@ -1,4 +1,8 @@
-
+<style>
+    #sidebar .sidebar-link {
+        text-decoration: none;
+    }
+</style>
 
 <div class="wrapper">
     <aside id="sidebar">
@@ -37,7 +41,7 @@
             </li>
             <li class="sidebar-item">
                 <a href="{{route('testimonis.index')}}" class="sidebar-link">
-                    <i class="bi bi-chat-quote"></i> <!-- Ikon Testimoni -->
+                    <i class="bi bi-chat-quote"></i>
                     <span>Testimoni</span>
                 </a>
             </li>
@@ -53,6 +57,12 @@
                     <i class="bi bi-bell"></i>
                     <span>Notifikasi Pesan</span>
                 </a>
+                <li class="sidebar-item">
+                    <a href="{{route('riwayat.tampilan')}}" class="sidebar-link">
+                        <i class="bi bi-clock-history"></i>
+                        <span>Riwayat Pemesanan</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a href="{{route('home')}}" class="sidebar-link">
                         <i class="bi bi-house"></i>

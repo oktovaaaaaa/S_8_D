@@ -46,7 +46,7 @@
       <div class="col-lg-2 col-md-3 footer-links">
         <h4>Layanan</h4>
         <ul>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="{{ route('kontakuserr') }}">Kontak</a></li>
           <li><i class="bi bi-chevron-right"></i> <a href="{{ route('testimoni.index') }}">Testimoni</a></li>
           {{-- <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
           <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li> --}}

@@ -8,9 +8,16 @@ use App\Models\Pengumuman;
 
 class PengumumanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pengumumans = Pengumuman::all();
+    $search = $request->input('search');
+    $query = Pengumuman::query();
+
+    if ($search) {
+        $query->where('judul', 'like', '%' . $search . '%')->orWhere('teks', 'like', '%' . $search . '%');
+    }
+
+    $pengumumans = $query->paginate(6);
         return view('pengumumans.tampilan', compact('pengumumans'));
     }
 

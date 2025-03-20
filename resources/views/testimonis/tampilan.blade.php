@@ -5,8 +5,16 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <div class="container pt-5 my-5">
+    <div class="container pt-5 my-5 text-center">
         <h1>Daftar Testimoni</h1>
+
+        <div class="mt-4">
+            <form action="{{ route('testimonis.index') }}" method="GET" class="d-flex">
+                <input type="text" name="search" class="form-control me-2" placeholder="Cari testimoni..." value="{{ $search ?? '' }}">
+                <button type="submit" class="btn btn-outline-primary">Cari</button>
+            </form>
+        </div>
+        <br>
 
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -14,6 +22,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+
+
+@if (isset($testimonis) && $testimonis->isEmpty())
+<div class="alert alert-info mt-4">
+    Tidak ada testimoni yang ditemukan "{{ request('search') }}".
+</div>
+@endif
 
 
         @auth
@@ -26,7 +41,7 @@
             <a href="{{ route('login') }}" class="btn btn-primary mb-3">Login</a>
         @endif
 
-        <table class="table table-striped">
+        <table class="table table-striped pt-5 my-5">
             <thead>
                 <tr>
                     <th>Nama</th>

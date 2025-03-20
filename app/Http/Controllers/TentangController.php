@@ -7,9 +7,15 @@ use App\Models\Tentang;
 
 class TentangController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tentangs = Tentang::paginate(6);
+        $search = $request->input('search');
+        $query = Tentang::query();
+
+        if ($search) {
+            $query->where('judul', 'like', '%' . $search . '%')->orWhere('deskripsi', 'like', '%' . $search . '%');
+        }
+        $tentangs = $query->paginate(6);
 
         return view('tentangs.tampilan', compact('tentangs'));
     }

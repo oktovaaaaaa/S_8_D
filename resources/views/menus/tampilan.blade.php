@@ -151,13 +151,13 @@
     <br><br><br>
 
     @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close"></button>
+    </div>
+@endif
 
-    <!-- Pesan Jika Hasil Pencarian Kosong -->
     @if (isset($menus) && $menus->isEmpty())
         <div class="alert alert-info mt-4">
             Tidak ada menu yang ditemukan "{{ request('search') }}".
@@ -166,14 +166,14 @@
 
     <!-- Daftar Menu -->
     <div class="container mt-4">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
             @if (isset($menus))
                 @foreach ($menus as $menu)
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                         <div class="card h-100 shadow-sm rounded-4 overflow-hidden">
                             <!-- Gambar dengan aspect ratio 1:1 -->
                             <div class="ratio ratio-1x1">
-                                <img src="{{ url('storage/' . $menu->foto) }}" class="card-img-top img-fluid rounded-top-4"
+                                <img src="{{ url('storage/images/' . $menu->foto) }}" class="card-img-top img-fluid rounded-top-4"
                                     alt="Menu Image" style="object-fit: cover;">
                             </div>
                             <div class="card-body d-flex flex-column">
