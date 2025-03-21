@@ -51,7 +51,7 @@
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="{{ asset('path/to/default/profile.png') }}" alt="Profile" class="rounded-circle me-3" width="50" height="50">
+                            <img src="{{ asset('assets/img/profil.jpg') }}" alt="Profile" class="rounded-circle me-3" width="50" height="50"> {{-- kita gas buat fitur barU --}}
                             <div>
                                 <h5 class="card-title mb-0">{{ $testimoni->nama }}</h5>
                                 <small class="text-muted">{{ $testimoni->created_at->diffForHumans() }}</small>

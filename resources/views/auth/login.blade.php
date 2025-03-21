@@ -1,55 +1,103 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.main')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<section class="d-flex align-items-center justify-content-center" style="background-color: #37517e; min-height: 100vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col col-xl-8 col-lg-8 col-md-10 col-sm-12">
+                <div class="card" id="card-login" style="max-width: 600px; margin: auto;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="{{ asset('assets/img/delcafe.jpg') }}"
+                                 alt="login form" class="img-fluid" id="login-image"/>
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-4 text-black">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                        <span class="h1 fw-bold mb-0">Del Cafe</span>
+                                    </div>
+
+                                    <h5 class="fw-normal mb-3 pb-2" style="letter-spacing: 1px;">Masuk ke akun anda</h5>
+
+                                    <div data-mdb-input-init class="form-outline mb-3"> <!-- Kurangi margin-bottom -->
+                                        <input type="email" id="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <label class="form-label" for="email">Alamat email</label>
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <div data-mdb-input-init class="form-outline mb-3">
+                                        <input type="password" id="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        <label class="form-label" for="password">Kata sandi</label>
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="pt-1 mb-3">
+                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Masuk') }}</button>
+                                    </div>
+
+                                    <p class="mb-4 pb-lg-2" style="color: #393f81;">Belum punya akun? <a href="{{ route('register') }}" style="color: #393f81;">Daftar disini</a></p>
+                                </form>
+                                <a href="{{ url('') }}" class="btn btn-dark btn-lg btn-block" role="button">{{ __('Kembali') }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+<style>
+    #card-login {
+        border-radius: 1rem;
+    }
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+    #login-image {
+        border-radius: 1rem 0 0 1rem;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+    .container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
+    #card-login {
+        max-width: 600px;
+        width: 100%;
+    }
 
-        <div class="flex items-center justify-between mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+    .card-body {
+        padding: 1.5rem;
+    }
 
-            @if (Route::has('register'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
-                    {{ __('Belum punya akun') }}
-                </a>
-            @endif
-        </div>
-    </form>
-</x-guest-layout>
+    .form-control-lg {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+</style>

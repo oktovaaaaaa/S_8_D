@@ -1,52 +1,68 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.main')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<section class="vh-100 d-flex align-items-center justify-content-center" style="background-color: #37517e;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card" id="card-login">
+                    <div class="row g-0">
+                        <div class="col-md-6 d-none d-md-block">
+                            <img src="{{ asset('assets/img/delcafe.jpg') }}"
+                                 alt="login form" class="img-fluid" id="login-image"/>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div class="card-body p-4 text-black">
+                                <form method="POST" action="{{ route('register') }}">
+                                    @csrf
+                                    <div class="text-center mb-3">
+                                        <span class="h2 fw-bold">Del Cafe</span>
+                                    </div>
+                                    <h5 class="fw-normal mb-3 text-center">Buat akun baru</h5>
+                                    <div class="form-outline mb-3">
+                                        <input type="text" id="name" class="form-control form-control-lg" name="name" required>
+                                        <label class="form-label" for="name">Nama</label>
+                                    </div>
+                                    <div class="form-outline mb-3">
+                                        <input type="email" id="email" class="form-control form-control-lg" name="email" required>
+                                        <label class="form-label" for="email">Alamat email</label>
+                                    </div>
+                                    <div class="form-outline mb-3">
+                                        <input type="password" id="password" class="form-control form-control-lg" name="password" required>
+                                        <label class="form-label" for="password">Kata sandi</label>
+                                    </div>
+                                    <div class="form-outline mb-3">
+                                        <input type="password" id="password_confirmation" class="form-control form-control-lg" name="password_confirmation" required>
+                                        <label class="form-label" for="password_confirmation">Konfirmasi kata sandi</label>
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Buat akun</button>
+                                    </div>
+                                    <p class="mt-3 text-center" style="color: #393f81;">Sudah punya akun? <a href="{{ route('login') }}" style="color: #393f81;">Masuk disini</a></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+<style>
+    #card-login {
+        border-radius: 1rem;
+        max-width: 500px;
+        margin: auto;
+    }
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    #login-image {
+        border-radius: 1rem 0 0 1rem;
+        height: 100%;
+        object-fit: cover;
+    }
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    .container {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+</style>

@@ -119,7 +119,7 @@
     <!-- DONT CLEAR THIS PAGES-->
     <section id="call-to-action" class="call-to-action section dark-background">
 
-      <img src="assets/img/delcoffe.jpg" alt="">
+      <img src="assets/img/delcafe.jpg" alt="">
 
       <div class="container">
 

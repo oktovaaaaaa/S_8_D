@@ -1,7 +1,7 @@
-@include('layouts.main')
+@extends('layouts.main')
 
+@include('layouts.navbar')
 <div class="container ">
-    @include('layouts.navbar')
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -16,6 +16,7 @@
         </style>
         <div class="container pt-5 my-5">
             <h2 class="mtitle">Menu</h2>
+            @if(isset($menus) && count($menus) > 0)
 
             @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -44,7 +45,7 @@
 
                             <form action="{{ route('userr.prosesPembayaran') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="menu_id" value="{{ $menu->id }}"> <!-- Input hidden untuk menu_id -->
+                                <input type="hidden" name="menu_id" value="{{ $menu->id }}"> 
                                 <div class="mb-1">
                                     <label for="jumlah" class="form-label" style="font-size: 0.8rem;">Jumlah</label>
                                     <div class="input-group">
@@ -139,10 +140,11 @@
                 </div>
             </div>
         @endforeach
+        @else
+        <p class="text-center fs-4 pt-5">Menu tidak tersedia</p>
+    @endif
     </div>
 </div>
-
-
 @endif
 @endauth
 @include('layouts.footer')
