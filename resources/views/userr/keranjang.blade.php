@@ -1,5 +1,7 @@
 @extends('layouts.main')
 @include('layouts.navbar')
+@section('title', 'Keranjang')
+
 <style>
     body {
         font-family: 'Poppins', sans-serif;

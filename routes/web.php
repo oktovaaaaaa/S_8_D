@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminKontakController;
 use App\Http\Controllers\AdminTestimoniController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Pesanan;

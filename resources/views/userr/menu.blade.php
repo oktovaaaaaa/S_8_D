@@ -1,6 +1,7 @@
 @extends('layouts.main')
-
 @include('layouts.navbar')
+@section('title', 'Menu')
+
 <div class="container ">
     <style>
         body {
@@ -45,7 +46,7 @@
 
                             <form action="{{ route('userr.prosesPembayaran') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="menu_id" value="{{ $menu->id }}"> 
+                                <input type="hidden" name="menu_id" value="{{ $menu->id }}">
                                 <div class="mb-1">
                                     <label for="jumlah" class="form-label" style="font-size: 0.8rem;">Jumlah</label>
                                     <div class="input-group">
@@ -249,3 +250,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+@endse
